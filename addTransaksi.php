@@ -1,6 +1,8 @@
 <?php
 include 'koneksi.php';
 session_start();
+
+// Cek sesi dan level akses pengguna
 if ($_SESSION['user'] == "") {
     header("location:index.php");
     exit();
@@ -10,32 +12,53 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] == 'owner') {
     exit();
 }
 
-// Ensure the user is logged in and has the correct permission level
+// Ambil data dari form
+$Nama = $_POST['Nama'] ?? null;
+$Alamat = $_POST['Alamat'] ?? null;
+$Telp = $_POST['Telpon'] ?? null;
+$kodeBarang = $_POST['KodeBarang'] ?? null;
+$quantity = $_POST['Quantity'] ?? null;
 
-
-// Get form data
-$kodePelanggan = $_POST['KodePelanggan'];
-$kodeBarang = $_POST['KodeBarang'];
-$quantity = $_POST['Quantity']; // Assume this is the ordered quantity
-
-// Prepare the SQL INSERT query
-$sql = "INSERT INTO transaksi
-        VALUES (0,NOW(), '$kodePelanggan',  '$kodeBarang', '$quantity')";
-
-// Execute the order insertion and then reduce the item quantity
-if (mysqli_query($koneksi, $sql)) {
-    // Reduce the item quantity in `barang` table
-    $updateQtySql = "UPDATE barang SET `Qty/Jumlah` = `Qty/Jumlah` - '$quantity' WHERE KodeBarang = '$kodeBarang'";
-
-    if (mysqli_query($koneksi, $updateQtySql)) {
-        echo "Order berhasil ditambahkan dan jumlah barang diperbarui!";
-        header("Location: AdminDashboard.php"); // Redirect to dashboard after success
-    } else {
-        echo "Error updating quantity: " . mysqli_error($koneksi);
-    }
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($koneksi);
+// Validasi input
+if (!$Nama || !$Alamat || !$Telp || !$kodeBarang || !$quantity) {
+    die("Semua field harus diisi!");
 }
 
-// Close the database connection
+// Mulai transaksi database
+mysqli_begin_transaction($koneksi);
+
+try {
+    // Tambahkan pelanggan baru
+    $insertPelanggan = "INSERT INTO pelanggan (NamaPelanggan, AlamatPelanggan, NoTelpPelanggan) VALUES ('$Nama', '$Alamat', '$Telp')";
+    if (!mysqli_query($koneksi, $insertPelanggan)) {
+        throw new Exception("Gagal menambahkan pelanggan: " . mysqli_error($koneksi));
+    }
+
+    // Ambil KodePelanggan yang baru ditambahkan
+    $kodePelanggan = mysqli_insert_id($koneksi);
+
+    // Tambahkan transaksi
+    $insertTransaksi = "INSERT INTO transaksi (TanggalOrder, KodePelanggan, KodeBarang, Quantity) VALUES (NOW(), '$kodePelanggan', '$kodeBarang', '$quantity')";
+    if (!mysqli_query($koneksi, $insertTransaksi)) {
+        throw new Exception("Gagal menambahkan transaksi: " . mysqli_error($koneksi));
+    }
+
+    // Kurangi jumlah barang
+    $updateBarang = "UPDATE barang SET `Qty/Jumlah` = `Qty/Jumlah` - '$quantity' WHERE KodeBarang = '$kodeBarang'";
+    if (!mysqli_query($koneksi, $updateBarang)) {
+        throw new Exception("Gagal mengurangi jumlah barang: " . mysqli_error($koneksi));
+    }
+
+    // Commit transaksi jika semua berhasil
+    mysqli_commit($koneksi);
+    echo "Pelanggan dan transaksi berhasil ditambahkan!";
+    header("Location: AdminDashboard.php");
+} catch (Exception $e) {
+    // Rollback transaksi jika ada kesalahan
+    mysqli_rollback($koneksi);
+    echo "Terjadi kesalahan: " . $e->getMessage();
+}
+
+// Tutup koneksi database
+mysqli_close($koneksi);
 ?>

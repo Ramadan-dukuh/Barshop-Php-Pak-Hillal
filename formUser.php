@@ -80,7 +80,7 @@ if (isset($_SESSION['user'])) {
             transition: all 0.2s ease-in-out;
             font-weight: 700;
             text-shadow: 0 0 8px var(--secondary-color);
-        }
+        }       
         a{
             text-decoration: none;
             color: var(--primary-dark);
@@ -90,13 +90,13 @@ if (isset($_SESSION['user'])) {
             transition: all 0.2s ease-in-out;
             font-weight: 700;
             text-shadow: 0 0 8px var(--primary-color);
-        }       
+        }  
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h3>Welcome Back</h3>
-        <form action="login.php" method="post">
+        <h3>Register</h3>
+        <form action="addUser.php" method="post">
             <div class="form-group">
                 <input type="text" name="Username" placeholder="Username" required>
             </div>
@@ -104,10 +104,10 @@ if (isset($_SESSION['user'])) {
                 <input type="password" name="Password" placeholder="Password" required>
             </div>
             <div class="form-group">
-                <p>Belum punya akun? <a href="formUser.php">Register</a></p>
+                <p>Sudah punya akun? <a href="index.php">Login</a></p>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn-primary" name="Submit" value="Login">
+                <input type="submit" class="btn-primary" name="Submit" value="Register">
             </div>
         </form>
     </div>

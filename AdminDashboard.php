@@ -920,25 +920,28 @@ footer .coloumn-3 p {
 
 <?php if ($_SESSION['level'] == 'user' || $_SESSION['level'] == 'admin' || $_SESSION['level'] == 'owner') { ?>
 
-<section id="pesanan" class="pesanan">
+    <section id="pesanan" class="pesanan">
     <h1>Transaksi</h1>
     <?php
     include "koneksi.php";
 
-    // Query untuk mendapatkan data lengkap termasuk nama pelanggan dan barang
+    // Query untuk mendapatkan data lengkap termasuk nama pelanggan, barang, alamat, dan nomor telepon
     $sql = "SELECT 
                 transaksi.*, 
                 pelanggan.NamaPelanggan, 
+                pelanggan.AlamatPelanggan, 
+                pelanggan.NoTelpPelanggan, 
                 barang.NamaBarang 
             FROM transaksi
             JOIN pelanggan ON transaksi.KodePelanggan = pelanggan.KodePelanggan
-            JOIN barang ON transaksi.KodeBarang = barang.KodeBarang ORDER BY transaksi.NomorOrder ASC";
+            JOIN barang ON transaksi.KodeBarang = barang.KodeBarang 
+            ORDER BY transaksi.NomorOrder ASC";
 
     $result = mysqli_query($koneksi, $sql);
     ?>
 
     <?php if ($_SESSION['level'] == 'user') { 
-        echo '<a class="btn-add" href="formTransaksi.php">Tambah data</a>'; 
+        echo '<a class="btn-add" href="formTransaksi.php">Beli</a>'; 
     } ?>
 
     <div class="card-container">
@@ -948,9 +951,10 @@ footer .coloumn-3 p {
                     <h3><strong>Nomor Order:</strong> " . htmlspecialchars($row['NomorOrder']) . "</h3>
                     <p><strong>Tanggal Order:</strong> " . htmlspecialchars($row['TanggalOrder']) . "</p>
                     <p><strong>Nama Pelanggan:</strong> " . htmlspecialchars($row['NamaPelanggan']) . "</p>
+                    <p><strong>Alamat:</strong> " . htmlspecialchars($row['AlamatPelanggan']) . "</p>
+                    <p><strong>Nomor Telepon:</strong> " . htmlspecialchars($row['NoTelpPelanggan']) . "</p>
                     <p><strong>Nama Barang:</strong> " . htmlspecialchars($row['NamaBarang']) . "</p>
                     <p><strong>Jumlah:</strong> " . htmlspecialchars($row['quantity']) . "</p>";
-
 
             // Display restricted fields only for admin and owner
             if (isset($_SESSION['level']) && ($_SESSION['level'] == 'admin' || $_SESSION['level'] == 'owner')) {
@@ -973,6 +977,7 @@ footer .coloumn-3 p {
         ?>
     </div>
 </section>
+
 
 <?php } ?>
 

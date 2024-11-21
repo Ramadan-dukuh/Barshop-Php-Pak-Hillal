@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Order</title>
+    <title>Tambah Order dan Pelanggan | Barshop</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Styles are the same as before */
         :root {
             --primary-color: #4a98f7;
             --primary-dark: #3a7dd4;
@@ -30,6 +29,7 @@
             min-height: 100vh;
             background-color: var(--background-color);
             color: var(--text-color);
+            padding: 20px;
         }
 
         form {
@@ -40,7 +40,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--border-color);
-            transition: transform 0.3s ease;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
@@ -63,7 +62,8 @@
 
         form input[type="text"],
         form input[type="number"],
-        select, input[type="date"] {
+        form input[type="date"],
+        form select {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
@@ -77,30 +77,14 @@
         form input[type="text"]:focus,
         form input[type="number"]:focus,
         form input[type="date"]:focus,
-        select:focus {
+        form select:focus {
             border-color: var(--primary-color);
             background-color: #ffffff;
             outline: none;
         }
 
-        form input[type="submit"] {
-            grid-column: span 1;
-            padding: 10px;
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-        }
-
-        form input[type="submit"]:hover {
-            background-color: var(--primary-dark);
-        }
-        .btn-back{
+        form input[type="submit"],
+        .btn-back {
             grid-column: span 1;
             padding: 10px;
             background-color: var(--primary-color);
@@ -115,13 +99,34 @@
             text-align: center;
             text-decoration: none;
         }
+
+        form input[type="submit"]:hover,
+        .btn-back:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-back {
+            display: inline-block;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <form action="addTransaksi.php" method="post">
-        <h2>Tambah Order | Barshop</h2>
+        <h2>Tambah Order dan Pelanggan</h2>
 
-        <label for="KodePelanggan">Kode Pelanggan:</label>
+        <!-- Input Pelanggan -->
+        <label for="Nama">Nama Lengkap:</label>
+        <input type="text" id="Nama" name="Nama" placeholder="Nama Lengkap" required>
+
+        <label for="Alamat">Alamat:</label>
+        <input type="text" id="Alamat" name="Alamat" placeholder="Alamat Lengkap" required>
+
+        <label for="Telpon">No Telepon:</label>
+        <input type="text" id="Telpon" name="Telpon" placeholder="Nomor Telepon" required>
+
+        <!-- Input Order -->
+        <!-- <label for="KodePelanggan">Kode Pelanggan:</label>
         <select id="KodePelanggan" name="KodePelanggan" required>
             <option value="">Pilih Kode Pelanggan</option>
             <?php
@@ -132,8 +137,7 @@
                 echo "<option value='" . $pelanggan['KodePelanggan'] . "'>" . $pelanggan['NamaPelanggan'] . "</option>";
             }
             ?>
-        </select>
-
+        </select> -->
 
         <label for="KodeBarang">Kode Barang:</label>
         <select id="KodeBarang" name="KodeBarang" required>
@@ -148,10 +152,10 @@
         </select>
 
         <label for="Quantity">Jumlah:</label>
-        <input type="number" id="Quantity" name="Quantity" min="1" required>
+        <input type="number" id="Quantity" name="Quantity" min="1" placeholder="Jumlah Barang" required>
 
-        <a class="btn-back" href="index.php" ">Kembali</a>
-        <input type="submit" value="Beli">
+        <a class="btn-back" href="index.php">Kembali</a>
+        <input type="submit" value="Simpan">
     </form>
 </body>
 </html>
