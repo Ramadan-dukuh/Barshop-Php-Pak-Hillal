@@ -12,9 +12,6 @@ if (!isset($_SESSION['user']) || ($_SESSION['level'] != 'admin' && $_SESSION['le
 $NomorOrder = $_POST['NomorOrder'];
 $TanggalOrder = $_POST['TanggalOrder'];
 $KodePelanggan = $_POST['KodePelanggan'];
-$KodePemasok = $_POST['KodePemasok'];
-$NomorPO = $_POST['NomorPO'];
-$TanggalPO = $_POST['TanggalPO'];
 $KodeBarangBaru = $_POST['KodeBarang'];
 $QuantityBaru = $_POST['Quantity'];
 
@@ -55,9 +52,6 @@ if ($resultLama && mysqli_num_rows($resultLama) > 0) {
             SET 
                 TanggalOrder = '$TanggalOrder',
                 KodePelanggan = '$KodePelanggan',
-                KodePemasok = '$KodePemasok',
-                NomorPO = '$NomorPO',
-                TanggalPO = '$TanggalPO',
                 KodeBarang = '$KodeBarangBaru',
                 quantity = '$QuantityBaru'
             WHERE NomorOrder = '$NomorOrder'";

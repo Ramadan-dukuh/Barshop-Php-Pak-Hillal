@@ -15,15 +15,12 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] == 'owner') {
 
 // Get form data
 $kodePelanggan = $_POST['KodePelanggan'];
-$kodePemasok = $_POST['KodePemasok'];
-$nomorPO = $_POST['NomorPO'];
-$tanggalPO = $_POST['TanggalPO'];
 $kodeBarang = $_POST['KodeBarang'];
 $quantity = $_POST['Quantity']; // Assume this is the ordered quantity
 
 // Prepare the SQL INSERT query
 $sql = "INSERT INTO transaksi
-        VALUES (0,'', '$kodePelanggan', '$kodePemasok', '$nomorPO', '$tanggalPO', '$kodeBarang', '$quantity')";
+        VALUES (0,NOW(), '$kodePelanggan',  '$kodeBarang', '$quantity')";
 
 // Execute the order insertion and then reduce the item quantity
 if (mysqli_query($koneksi, $sql)) {

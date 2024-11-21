@@ -4,7 +4,7 @@ if ($_SESSION['user'] == "") {
     header("location:index.php");
     exit();
 }
-if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
+if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner' && $_SESSION['level'] != 'vendor') {
     header("location:AdminDashboard.php");
     exit();
 }
@@ -84,15 +84,14 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
         }
 
         form input[type="text"]:focus,
-        form input[type="number"]:focus,
-        form input[type="email"]:focus {
+        form input[type="number"]:focus {
             border-color: var(--primary-color);
             background-color: #ffffff;
             outline: none;
         }
 
         form input[type="submit"] {
-            grid-column: span 2;
+            grid-column: span 1;
             padding: 10px;
             background-color: var(--primary-color);
             color: var(--secondary-color);
@@ -107,6 +106,21 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
 
         form input[type="submit"]:hover {
             background-color: var(--primary-dark);
+        }
+        .btn-back{
+            grid-column: span 1;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
         }
     </style>
     <title>Barang | Barshop</title>
@@ -130,12 +144,15 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
         <label for="HargaBeli">Harga Beli:</label>
         <input type="number" id="HargaBeli" name="HargaBeli" min="1" required>
 
-        <label for="TotalHarga">Total Harga:</label>
+        <label for="TotalHarga">Harga Jual:</label>
         <input type="number" id="TotalHarga" name="TotalHarga" min="1" required>
 
+        <?php if ($_SESSION['level']=='vendor'){ ?>
         <label for="Jumlah">Jumlah:</label>
         <input type="number" id="Jumlah" name="Jumlah" min="1" required>
+        <?php } ?>
 
+        <a class="btn-back" href="index.php" ">Kembali</a>
         <input type="submit" value="Tambah">
     </form>
 </body>

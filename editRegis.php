@@ -88,7 +88,7 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
         }
 
         form input[type="submit"] {
-            grid-column: span 2;
+            grid-column: span 1;
             padding: 10px;
             background-color: var(--primary-color);
             color: var(--secondary-color);
@@ -103,6 +103,21 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
 
         form input[type="submit"]:hover {
             background-color: var(--primary-dark);
+        }
+        .btn-back{
+            grid-column: span 1;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
         }
     </style>
     <title>Edit Pelanggan | Barshop</title>
@@ -132,6 +147,7 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
         <label for="Telpon">No Telpon:</label>
         <input type="text" name="Telpon" id="Telpon" value="<?php echo $data['NoTelpPelanggan']; ?>">
 
+        <a class="btn-back" href="index.php" ">Kembali</a>
         <input type="submit" value="Ubah">
     </form>
 </body>

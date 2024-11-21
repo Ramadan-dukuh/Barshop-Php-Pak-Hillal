@@ -110,6 +110,58 @@ section {
 }
 
 /* Pesanan Section */
+.financial {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.financial h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #4caf50;
+}
+
+.financial-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap; /* Untuk memastikan layout tetap responsif */
+}
+
+.financial-summary > div {
+  flex: 1;
+  min-width: 150px;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+}
+
+.income {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.expense {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.totalbarang {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.amount {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
 .pesanan h1,
 .pelanggan h1,
 .inventory h1,
@@ -131,46 +183,59 @@ section {
 }
 
 .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 10px;
-        }
-        .card {
-            width: calc(100% / 3 - 20px);
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }       
-        .card h3 {
-            margin: 0 0 10px;
-            font-size: 18px;
-            color: #333;
-        }
-        .card p {
-            margin: 8px 0;
-            font-size: 14px;
-            color: #555;
-        }
-        .card .actions a {
-            margin-right: 10px;
-            text-decoration: none;
-            color: #007bff;
-        }
-        .card .actions a:hover {
-            transition: all 0.2s ease-in-out;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.card {
+    width: calc(100% / 3 - 20px);
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+                rgba(0, 0, 0, 0.12) 0px -12px 30px, 
+                rgba(0, 0, 0, 0.12) 0px 4px 6px, 
+                rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+                rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.card p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.card .actions a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007bff;
+    transition: all 0.2s ease-in-out;
+}
+
+.card .actions a:hover {
     font-weight: 700;
-    text-shadow: 0 0 8px var(--primary-color);
     color: var(--primary-color);
-        }
-    
+}
 
 /* Pelanggan Section */
 .pelanggan table,
 .inventory table,
-.pemasok table {
+.pemasok table,
+.laporan table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
@@ -179,7 +244,8 @@ section {
 
 .pelanggan th,
 .inventory th,
-.pemasok th {
+.pemasok th ,
+.laporan th{
     background-color: #f2f2f2;
     padding: 10px;
     border: 1px solid #ddd;
@@ -188,7 +254,8 @@ section {
 
 .pelanggan td,
 .inventory td,
-.pemasok td {
+.pemasok td,
+.laporan td {
     padding: 10px;
     border: 1px solid #ddd;
 }
@@ -196,14 +263,16 @@ section {
 /* Apply alternating row color */
 .pelanggan tr:nth-child(even),
 .inventory tr:nth-child(even),
-.pemasok tr:nth-child(even) {
+.pemasok tr:nth-child(even),
+.laporan tr:nth-child(even)  {
     background-color: #f9f9f9;
 }
 
 /* Row hover effect, affecting only table cells */
 .pelanggan tr:hover td,
 .inventory tr:hover td,
-.pemasok tr:hover td {
+.pemasok tr:hover td,
+.laporan tr:hover td  {
     background-color: var(--primary-color);  
     color: var(--secondary-color);
 }
@@ -225,7 +294,8 @@ section {
 /* Maintain link color on row hover */
 .pelanggan tr:hover .actions a,
 .inventory tr:hover .actions a,
-.pemasok tr:hover .actions a {
+.pemasok tr:hover .actions a,
+.laporan tr:hover .actions a {
     color: var(--secondary-color); /* Keep link text visible on row hover */
 }
 
@@ -242,6 +312,127 @@ section {
 .user {
     color: #1e90ff; /* Dodger Blue color for regular user */
 }
+.vendor{
+    color:yellow;
+}
+
+.container {
+      width: 100%;
+      max-width: 100%;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input, textarea, select {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background: #5cb85c;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4cae4c;
+    }
+
+    .message-list {
+      margin-top: 20px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+
+    .message {
+  position: relative;
+  padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #ff5c5c;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  color: #ff0000;
+}
+
+
+    .message h4 {
+      margin: 0 0 10px;
+      color: #333;
+    }
+
+    .message p {
+      margin: 0;
+      color: #555;
+    }
+
+   
+
+/* Status-specific colors */
+.laporan td.status.cancel {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red */
+}
+
+.laporan td.status.pending {
+    background-color: #fff3cd; /* Light yellow */
+    color: #856404; /* Dark yellow */
+}
+
+.laporan td.status.approve {
+    background-color: #d1ecf1; /* Light blue */
+    color: #0c5460; /* Dark blue */
+}
+
+.laporan td.status.confirm {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green */
+}
+
+
 footer {
     display: block;
     justify-content: center;
@@ -403,7 +594,7 @@ footer .coloumn-3 p {
 /* footer */
 
     </style>
-    <title>Admin | Barshop</title>
+    <title>Home | Barshop</title>
 </head>
 <body>
     <!-- Navbar -->
@@ -412,13 +603,24 @@ footer .coloumn-3 p {
         <a href="#" class="logo">Barshop</a>
         <ul class="nav-links">
             <i class="uil uil-times navCloseBtn" onclick="closeNav()"></i>
+            <?php if ($_SESSION['level'] == 'admin' || $_SESSION['level'] == 'owner' || $_SESSION['level'] == 'vendor') { ?>
+                <li><a href="#laporan">Laporan</a></li>
+                <?php } ?>
+            <?php if ($_SESSION['level'] == 'user' || $_SESSION['level']== 'admin' || $_SESSION['level']=='' ) { ?>            
             <li><a href="#pesanan">Transaksi</a></li>
-            <?php if ($_SESSION['level'] == 'admin' || $_SESSION['level'] == 'owner') { ?>
-            <li><a href="#pelanggan">Pelanggan</a></li>
-            <li><a href="#inventory">Barang</a></li>
-            <li><a href="#pemasok">Pemasok</a></li>
             <?php } ?>
-            <li><a href="logout.php">Logout</a></li>
+            <?php if ($_SESSION['level'] == 'admin' || $_SESSION['level'] == 'owner') { ?>
+                <li><a href="#pelanggan">Pelanggan</a></li>
+                <li><a href="#pemasok">Pemasok</a></li>
+                <?php } ?>
+                <?php if ($_SESSION['level'] == 'vendor') { ?>
+                <li><a href="#transaksi">Riwayat Transaksi</a></li>
+                <?php } ?>
+                <?php if ($_SESSION['level']=='vendor'||$_SESSION['level'] == 'admin' || $_SESSION['level'] == 'owner' ){?>
+                <li><a href="#inventory">Barang</a></li>
+                <?php } ?>
+             
+                <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
 
@@ -428,46 +630,334 @@ footer .coloumn-3 p {
     Selamat Datang Di Barshop
 </h1>
 
+<?php if ($_SESSION['level'] == 'vendor') { ?>
+
+    <section id="laporan" class="laporan">
+<h1>Permintaan Barang</h1>
+    <?php        
+    include "koneksi.php";
+    
+    // Query dengan JOIN untuk mengambil Nama Barang
+    $sql = "SELECT laporan.id, laporan.KodeBarang, barang.NamaBarang, laporan.jumlah, laporan.pesan,laporan.status ,laporan.waktu 
+            FROM laporan 
+            JOIN barang ON laporan.KodeBarang = barang.KodeBarang WHERE laporan.status = 'Approve'";
+    
+    $result = mysqli_query($koneksi, $sql);
+    ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Kode Laporan</th>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Jumlah</th>
+                <th>Pesan</th>
+                <th>Status</th>
+                <th>Waktu</th>   
+                <th>Aksi</th>                         
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>
+                <td>" . htmlspecialchars($row['id']) . "</td>
+                <td>" . htmlspecialchars($row['KodeBarang']) . "</td>
+                <td>" . htmlspecialchars($row['NamaBarang']) . "</td>
+                <td>" . htmlspecialchars($row['jumlah']) . "</td>
+                <td>" . htmlspecialchars($row['pesan']) . "</td>
+                <td class='status " . strtolower($row['status']) . "'>" . htmlspecialchars($row['status']) . "</td>
+                <td>" . htmlspecialchars($row['waktu']) . "</td>
+                <td class='actions'>";
+            
+            if (isset($_SESSION['level']) && $_SESSION['level'] == 'vendor') {
+                echo "<a href='formBeli.php?id=" . urlencode($row['id']) . "'>Terima</a> | 
+                      <a href='cancelLaporan.php?id=" . urlencode($row['id']) . "' onclick=\"return confirm('Anda yakin ingin menolak data ini?')\">Tolak</a> ";               
+            } 
+
+            echo "</td></tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+</section>
+
+<section id="transaksi" class="transaksi">
+<h1>Transaksi</h1>
+    <?php
+    include "koneksi.php";
+
+    // Query untuk mendapatkan data lengkap termasuk nama pelanggan dan barang
+    $sql = "SELECT 
+                belibarang.*, 
+                pemasok.NamaPemasok, 
+                barang.NamaBarang 
+            FROM belibarang
+            JOIN pemasok ON belibarang.KodePemasok = pemasok.KodePemasok
+            JOIN barang ON belibarang.KodeBarang = barang.KodeBarang ORDER BY belibarang.NomorPO ASC";
+
+    $result = mysqli_query($koneksi, $sql);
+    ?>
+
+    <?php if ($_SESSION['level'] == 'user') { 
+        echo '<a class="btn-add" href="formTransaksi.php">Tambah data</a>'; 
+    } ?>
+
+    <div class="card-container">
+        <?php
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<div class='card'>
+                    <h3><strong>Nomor PO:</strong> " . htmlspecialchars($row['NomorPO']) . "</h3>
+                    <p><strong>Tanggal Order:</strong> " . htmlspecialchars($row['TanggalPO']) . "</p>
+                    <p><strong>Nama Pemasok:</strong> " . htmlspecialchars($row['NamaPemasok']) . "</p>
+                    <p><strong>Nama Barang:</strong> " . htmlspecialchars($row['NamaBarang']) . "</p>
+                    <p><strong>Jumlah:</strong> " . htmlspecialchars($row['Jumlah']) . "</p>";
+
+
+            // Display restricted fields only for admin and owner
+            echo "<div class='actions'>";
+
+            // Display action buttons based on user level
+            if (isset($_SESSION['level']) && $_SESSION['level'] == 'vendor') {
+                echo "<a href='editBeli.php?NomorPO=" . urlencode($row['NomorPO']) . "'>Edit</a> | 
+                      <a href='deleteBeli.php?NomorPO=" . urlencode($row['NomorPO']) . "' onclick=\"return confirm('Anda yakin ingin menghapus data ini?')\">Delete</a>";
+            } 
+
+            echo "</div>
+                  </div>";
+        }
+        ?>
+    </div>
+</section>
+
+
+
+<?php } ?>
+
+<?php if ($_SESSION['level'] == 'admin') { ?>
+<section id="laporan" class="laporan">
+<h1>Laporan</h1>
+    <?php        
+    include "koneksi.php";
+    
+    // Query dengan JOIN untuk mengambil Nama Barang
+    $sql = "SELECT laporan.id, laporan.KodeBarang, barang.NamaBarang, laporan.jumlah, laporan.pesan,laporan.status ,laporan.waktu 
+            FROM laporan 
+            JOIN barang ON laporan.KodeBarang = barang.KodeBarang WHERE laporan.status = 'Pending'";
+    
+    $result = mysqli_query($koneksi, $sql);
+    ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Kode Laporan</th>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Jumlah</th>
+                <th>Pesan</th>
+                <th>Status</th>
+                <th>Waktu</th>   
+                <th>Aksi</th>                         
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>
+                <td>" . htmlspecialchars($row['id']) . "</td>
+                <td>" . htmlspecialchars($row['KodeBarang']) . "</td>
+                <td>" . htmlspecialchars($row['NamaBarang']) . "</td>
+                <td>" . htmlspecialchars($row['jumlah']) . "</td>
+                <td>" . htmlspecialchars($row['pesan']) . "</td>
+                <td class='status " . strtolower($row['status']) . "'>" . htmlspecialchars($row['status']) . "</td>
+                <td>" . htmlspecialchars($row['waktu']) . "</td>
+                <td class='actions'>";
+            
+            if (isset($_SESSION['level']) && $_SESSION['level'] == 'admin') {
+                echo "<a href='approveLaporan.php?id=" . urlencode($row['id']) . "'>Kirim ke Vendor</a>";
+            } 
+
+            echo "</td></tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+</section>
+<?php } ?>
+
+<?php if ($_SESSION['level'] == 'owner') { ?>
+    <section id="keuangan" class="keuangan">
+    <?php
+    include "koneksi.php";
+
+    // --- Perhitungan Pengeluaran ---
+    $query_pengeluaran = "SELECT * FROM barang"; // Pastikan nama tabel dan kolom sesuai
+    $result_pengeluaran = mysqli_query($koneksi, $query_pengeluaran);
+
+    // Validasi query pengeluaran
+    if (!$result_pengeluaran) {
+        die("Query pengeluaran gagal: " . mysqli_error($koneksi));
+    }
+
+    // Inisialisasi total pengeluaran
+    $total_pengeluaran = 0;
+
+    // Hitung total pengeluaran
+    while ($row = mysqli_fetch_assoc($result_pengeluaran)) {
+        $harga_beli = $row['HargaBeli'];
+        $qty = $row['Qty/Jumlah'];
+        $total_pengeluaran += $harga_beli * $qty;
+    }
+
+    // --- Perhitungan Pendapatan ---
+    $query_pendapatan = "SELECT t.quantity, b.TotalHarga 
+        FROM transaksi t
+        INNER JOIN barang b ON t.KodeBarang = b.KodeBarang"; // Pastikan nama tabel dan kolom sesuai
+    $result_pendapatan = mysqli_query($koneksi, $query_pendapatan);
+
+    // Validasi query pendapatan
+    if (!$result_pendapatan) {
+        die("Query pendapatan gagal: " . mysqli_error($koneksi));
+    }
+
+    // Inisialisasi total pendapatan
+    $total_pendapatan = 0;
+
+    // Hitung total pendapatan
+    while ($row = mysqli_fetch_assoc($result_pendapatan)) {
+        $jumlah = $row['quantity'];
+        $harga_total = $row['TotalHarga'];
+        $total_pendapatan += $jumlah * $harga_total; // Perkalian jika logika sesuai
+    }
+
+    // --- Perhitungan Total Jumlah Barang ---
+    $query_total_barang = "SELECT SUM(`Qty/Jumlah`) AS total_barang FROM barang"; // Pastikan nama tabel dan kolom sesuai
+    $result_total_barang = mysqli_query($koneksi, $query_total_barang);
+
+    // Validasi query total jumlah barang
+    if (!$result_total_barang) {
+        die("Query total jumlah barang gagal: " . mysqli_error($koneksi));
+    }
+
+    // Ambil total jumlah barang
+    $total_barang = 0;
+    if ($row = mysqli_fetch_assoc($result_total_barang)) {
+        $total_barang = $row['total_barang'];
+    }
+    ?>
+
+    <center>
+        <div class="financial">
+            <h1>Laporan</h1>
+            <div class="financial-summary">
+                <div class="income">
+                    <h2>Pendapatan</h2>
+                    <?php echo "<p class='amount'>Rp " . number_format($total_pendapatan, 0, ',', '.') . "</p>"; ?>
+                </div>
+                <div class="expense">
+                    <h2>Pengeluaran</h2>
+                    <?php echo "<p class='amount'>Rp " . number_format($total_pengeluaran, 0, ',', '.') . "</p>"; ?>
+                </div>
+                <div class="totalbarang">
+                    <h2>Total Barang</h2>
+                    <?php echo "<p class='amount'>" . number_format($total_barang, 0, ',', '.') . " unit</p>"; ?>
+                </div>
+            </div>
+        </div>
+    </center>
+</section>
+
+    <section id="laporan" class="laporan">
+<h1>Laporan Pembelian</h1>
+    <?php        
+    include "koneksi.php";
+    
+    // Query dengan JOIN untuk mengambil Nama Barang
+    $sql = "SELECT laporan.id, laporan.KodeBarang, barang.NamaBarang, laporan.jumlah, laporan.pesan, laporan.status, laporan.waktu 
+            FROM laporan 
+            JOIN barang ON laporan.KodeBarang = barang.KodeBarang";
+
+    
+    $result = mysqli_query($koneksi, $sql);
+    ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Kode Laporan</th>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Jumlah</th>
+                <th>Pesan</th>
+                <th>Status</th>
+                <th>Waktu</th>   
+                <th>Aksi</th>                         
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>
+                <td>" . htmlspecialchars($row['id']) . "</td>
+                <td>" . htmlspecialchars($row['KodeBarang']) . "</td>
+                <td>" . htmlspecialchars($row['NamaBarang']) . "</td>
+                <td>" . htmlspecialchars($row['jumlah']) . "</td>
+                <td>" . htmlspecialchars($row['pesan']) . "</td>
+                <td class='status " . strtolower($row['status']) . "'>" . htmlspecialchars($row['status']) . "</td>
+                <td>" . htmlspecialchars($row['waktu']) . "</td>
+                <td class='actions'>";
+            
+            if (isset($_SESSION['level']) && $_SESSION['level'] == 'owner') {
+                echo "<a href='deleteLaporan.php?id=" . urlencode($row['id']) . "' onclick=\"return confirm('Anda yakin ingin menghapus data ini?')\">Delete</a> ";               
+            } 
+
+            echo "</td></tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+</section>
+    <?php } ?>
+
+<?php if ($_SESSION['level'] == 'user' || $_SESSION['level'] == 'admin' || $_SESSION['level'] == 'owner') { ?>
 
 <section id="pesanan" class="pesanan">
     <h1>Transaksi</h1>
     <?php
     include "koneksi.php";
 
-    // Query untuk mendapatkan data lengkap termasuk nama pelanggan, pemasok, dan barang
+    // Query untuk mendapatkan data lengkap termasuk nama pelanggan dan barang
     $sql = "SELECT 
                 transaksi.*, 
                 pelanggan.NamaPelanggan, 
-                pemasok.NamaPemasok, 
                 barang.NamaBarang 
             FROM transaksi
             JOIN pelanggan ON transaksi.KodePelanggan = pelanggan.KodePelanggan
-            JOIN pemasok ON transaksi.KodePemasok = pemasok.KodePemasok
-            JOIN barang ON transaksi.KodeBarang = barang.KodeBarang";
+            JOIN barang ON transaksi.KodeBarang = barang.KodeBarang ORDER BY transaksi.NomorOrder ASC";
 
     $result = mysqli_query($koneksi, $sql);
     ?>
 
-    <!-- Tampilkan link "Tambah data" hanya untuk admin dan operator -->
-    <?php
-    echo '<a class="btn-add" href="formTransaksi.php">Tambah data</a>';
-    ?>
+    <?php if ($_SESSION['level'] == 'user') { 
+        echo '<a class="btn-add" href="formTransaksi.php">Tambah data</a>'; 
+    } ?>
 
     <div class="card-container">
         <?php
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<div class='card'>
-                    <h3>Nomor Order: " . htmlspecialchars($row['NomorOrder']) . "</h3>
+                    <h3><strong>Nomor Order:</strong> " . htmlspecialchars($row['NomorOrder']) . "</h3>
                     <p><strong>Tanggal Order:</strong> " . htmlspecialchars($row['TanggalOrder']) . "</p>
-                    <p><strong>Kode Pelanggan:</strong> " . htmlspecialchars($row['KodePelanggan']) . "</p>
                     <p><strong>Nama Pelanggan:</strong> " . htmlspecialchars($row['NamaPelanggan']) . "</p>
-                    <p><strong>Kode Pemasok:</strong> " . htmlspecialchars($row['KodePemasok']) . "</p>
-                    <p><strong>Nama Pemasok:</strong> " . htmlspecialchars($row['NamaPemasok']) . "</p>
-                    <p><strong>Kode Barang:</strong> " . htmlspecialchars($row['KodeBarang']) . "</p>
                     <p><strong>Nama Barang:</strong> " . htmlspecialchars($row['NamaBarang']) . "</p>
-                    <p><strong>Nomor PO:</strong> " . htmlspecialchars($row['NomorPO']) . "</p>
-                    <p><strong>Tanggal PO:</strong> " . htmlspecialchars($row['TanggalPO']) . "</p>
-                    <div class='actions'>";
+                    <p><strong>Jumlah:</strong> " . htmlspecialchars($row['quantity']) . "</p>";
+
+
+            // Display restricted fields only for admin and owner
+            if (isset($_SESSION['level']) && ($_SESSION['level'] == 'admin' || $_SESSION['level'] == 'owner')) {
+                echo "<p><strong>Kode Pelanggan:</strong> " . htmlspecialchars($row['KodePelanggan']) . "</p>";
+            }
+
+            echo "<div class='actions'>";
 
             // Display action buttons based on user level
             if (isset($_SESSION['level']) && $_SESSION['level'] == 'admin') {
@@ -483,6 +973,9 @@ footer .coloumn-3 p {
         ?>
     </div>
 </section>
+
+<?php } ?>
+
 
 
 <?php if ($_SESSION['level'] == 'admin' || $_SESSION['level'] == 'owner') { ?>
@@ -529,55 +1022,6 @@ footer .coloumn-3 p {
 </section>
 
 
-<section id="inventory" class="inventory">
-    <h1>Inventaris & Permintaan Pembelian</h1>
-    <?php        
-    include "koneksi.php";
-    $sql = "SELECT * FROM barang";
-    $result = mysqli_query($koneksi, $sql);
-    ?>
-    <table>
-        <thead>
-            <tr>
-                <th>Kode Barang</th>
-                <th>Nama Barang</th>
-                <th>Jenis Barang</th>
-                <th>Satuan</th>
-                <th>Harga Beli</th>
-                <th>Total Harga</th>
-                <th>Jumlah</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>
-                <td>" . htmlspecialchars($row['KodeBarang']) . "</td>
-                <td>" . htmlspecialchars($row['NamaBarang']) . "</td>
-                <td>" . htmlspecialchars($row['JenisBarang']) . "</td>
-                <td>" . htmlspecialchars($row['Satuan']) . "</td>
-                <td>Rp " . number_format($row['HargaBeli'], 0, ',', '.') . "</td>
-                <td>Rp " . number_format($row['TotalHarga'], 0, ',', '.') . "</td>
-                <td>" . htmlspecialchars($row['Qty/Jumlah']) . "</td>
-                <td class='actions'>";
-            
-            if (isset($_SESSION['level']) && $_SESSION['level'] == 'admin') {
-                echo "<a href='editBarang.php?KodeBarang=" . urlencode($row['KodeBarang']) . "'>Edit</a> | 
-                      <a href='deleteBarang.php?KodeBarang=" . urlencode($row['KodeBarang']) . "' onclick=\"return confirm('Anda yakin ingin menghapus data ini?')\">Delete</a> | 
-                      <a href='formbarang.php'>Tambah</a>";
-            } elseif (isset($_SESSION['level']) && $_SESSION['level'] == 'operator') {
-                echo "<a href='formEditBarang.php?KodeBarang=" . urlencode($row['KodeBarang']) . "'>Edit</a>";
-            } else {
-                echo "Aksi tidak tersedia";
-            }
-
-            echo "</td></tr>";
-        }
-        ?>
-        </tbody>
-    </table>
-</section>
 
 <section id="pemasok" class="pemasok">
     <h1>Pemasok</h1>
@@ -620,11 +1064,80 @@ footer .coloumn-3 p {
 
             echo "</td></tr>";
         }
-    }
+}
         ?>
         </tbody>
     </table>
 </section>
+
+
+ 
+
+<?php if ($_SESSION['level'] == 'owner' || $_SESSION['level'] == 'admin' || $_SESSION['level'] == 'vendor') { ?>
+<section id="inventory" class="inventory">
+    <h1>Inventaris & Permintaan Pembelian</h1>
+    <?php        
+    include "koneksi.php";
+    $sql = "SELECT * FROM barang";
+    $result = mysqli_query($koneksi, $sql);
+    ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Jenis Barang</th>
+                <th>Satuan</th>
+                <th>Harga Beli</th>
+                <th>Harga Jual</th>
+                <th>Jumlah</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>
+                <td>" . htmlspecialchars($row['KodeBarang']) . "</td>
+                <td>" . htmlspecialchars($row['NamaBarang']) . "</td>
+                <td>" . htmlspecialchars($row['JenisBarang']) . "</td>
+                 <td>" . htmlspecialchars($row['Satuan']) . "</td>
+                <td>Rp " . number_format($row['HargaBeli'], 0, ',', '.') . "</td>
+                <td>Rp " . number_format($row['TotalHarga'], 0, ',', '.') . "</td>
+                <td>";
+
+            // Tampilkan jumlah barang atau pemberitahuan jika jumlah barang rendah
+            if (isset($_SESSION['level']) && $_SESSION['level'] == 'owner' && $row['Qty/Jumlah'] <= 5) {
+                echo "<span style='color: red; font-weight: bold;'><a href='formLaporan.php?KodeBarang=" . urlencode($row['KodeBarang']) . "' style='text-decoration: none; color: red; font-weight: bold;'>Tersisa " . htmlspecialchars($row['Qty/Jumlah']) . "!</a></span>";
+            } else {
+                echo htmlspecialchars($row['Qty/Jumlah']." buah");
+            }
+
+            echo "</td>
+                <td class='actions'>";
+
+            // Tampilkan aksi berdasarkan level pengguna
+            if (isset($_SESSION['level']) && $_SESSION['level'] == 'admin') {
+                echo "<a href='editBarang.php?KodeBarang=" . urlencode($row['KodeBarang']) . "'>Edit</a> | 
+                      <a href='deleteBarang.php?KodeBarang=" . urlencode($row['KodeBarang']) . "' onclick=\"return confirm('Anda yakin ingin menghapus data ini?')\">Delete</a> |
+                      <a href='formbarang.php'>Tambah</a>";
+            } elseif (isset($_SESSION['level']) && $_SESSION['level'] == 'op') {
+                echo "<a href='editBarang.php?KodeBarang=" . urlencode($row['KodeBarang']) . "'>Edit</a>";
+            } else {
+                echo "Aksi tidak tersedia";
+            }
+
+            echo "</td></tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+</section>
+<?php 
+
+} ?>
+
+
 
 <footer id="footer">
         <div class="container">

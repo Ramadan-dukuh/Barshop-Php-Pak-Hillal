@@ -12,7 +12,7 @@ $dbuser = $row['Username'];
 $dbpass = $row['Password'];
 $dblevel = $row['Level'];
 
-if ($user == $dbuser && $pass == $dbpass && $dblevel=="admin" || $dblevel=="owner" || $dblevel=="user"){
+if ($user == $dbuser && $pass == $dbpass && $dblevel=="admin" || $dblevel=="owner" || $dblevel=="user" || $dblevel=="vendor") {
     session_start();
     $_SESSION['user'] = $dbuser;
     $_SESSION['level']= $dblevel;

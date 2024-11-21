@@ -99,7 +99,7 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
         }
 
         form input[type="submit"] {
-            grid-column: span 2;
+            grid-column: span 1;
             padding: 10px;
             background-color: var(--primary-color);
             color: var(--secondary-color);
@@ -114,6 +114,21 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
 
         form input[type="submit"]:hover {
             background-color: var(--primary-dark);
+        }
+        .btn-back{
+            grid-column: span 1;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
         }
     </style>
     <title>Edit Transaksi | Barshop</title>
@@ -156,26 +171,6 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
             }
             ?>
         </select>
-
-        <label for="KodePemasok">Kode Pemasok:</label>
-        <select id="KodePemasok" name="KodePemasok" required>
-            <option value="">Pilih Kode Pemasok</option>
-            <?php
-            $pemasokQuery = "SELECT KodePemasok, NamaPemasok FROM pemasok";
-            $pemasokResult = mysqli_query($koneksi, $pemasokQuery);
-            while ($pemasok = mysqli_fetch_assoc($pemasokResult)) {
-                $selected = $pemasok['KodePemasok'] == $data['KodePemasok'] ? 'selected' : '';
-                echo "<option value='" . $pemasok['KodePemasok'] . "' $selected>" . $pemasok['NamaPemasok'] . "</option>";
-            }
-            ?>
-        </select>
-
-        <label for="NomorPO">Nomor PO:</label>
-        <input type="number" id="NomorPO" name="NomorPO" value="<?php echo $data['NomorPO']; ?>" min="1" required>
-
-        <label for="TanggalPO">Tanggal PO:</label>
-        <input type="date" id="TanggalPO" name="TanggalPO" value="<?php echo $data['TanggalPO']; ?>" required>
-
         <label for="KodeBarang">Kode Barang:</label>
         <select id="KodeBarang" name="KodeBarang" required>
             <option value="">Pilih Kode Barang</option>
@@ -192,6 +187,7 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
         <label for="Quantity">Jumlah:</label>
         <input type="number" id="Quantity" name="Quantity" value="<?php echo $data['quantity']; ?>" min="1" required>
 
+        <a class="btn-back" href="index.php" ">Kembali</a>
         <input type="submit" value="Ubah">
     </form>
 </body>

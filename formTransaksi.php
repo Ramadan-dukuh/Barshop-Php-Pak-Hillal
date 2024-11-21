@@ -84,7 +84,7 @@
         }
 
         form input[type="submit"] {
-            grid-column: span 2;
+            grid-column: span 1;
             padding: 10px;
             background-color: var(--primary-color);
             color: var(--secondary-color);
@@ -99,6 +99,21 @@
 
         form input[type="submit"]:hover {
             background-color: var(--primary-dark);
+        }
+        .btn-back{
+            grid-column: span 1;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -119,23 +134,6 @@
             ?>
         </select>
 
-        <label for="KodePemasok">Kode Pemasok:</label>
-        <select id="KodePemasok" name="KodePemasok" required>
-            <option value="">Pilih Kode Pemasok</option>
-            <?php
-            $supplierQuery = "SELECT KodePemasok, NamaPemasok FROM pemasok";
-            $supplierResult = mysqli_query($koneksi, $supplierQuery);
-            while ($supplier = mysqli_fetch_assoc($supplierResult)) {
-                echo "<option value='" . $supplier['KodePemasok'] . "'>" . $supplier['NamaPemasok'] . "</option>";
-            }
-            ?>
-        </select>
-
-        <label for="NomorPO">Nomor PO:</label>
-        <input type="number" id="NomorPO" name="NomorPO" min="1" required>
-
-        <label for="TanggalPO">Tanggal PO:</label>
-        <input type="date" id="TanggalPO" name="TanggalPO" required>
 
         <label for="KodeBarang">Kode Barang:</label>
         <select id="KodeBarang" name="KodeBarang" required>
@@ -152,6 +150,7 @@
         <label for="Quantity">Jumlah:</label>
         <input type="number" id="Quantity" name="Quantity" min="1" required>
 
+        <a class="btn-back" href="index.php" ">Kembali</a>
         <input type="submit" value="Beli">
     </form>
 </body>

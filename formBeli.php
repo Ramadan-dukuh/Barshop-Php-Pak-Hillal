@@ -1,21 +1,30 @@
 <?php
+include 'koneksi.php';
 session_start();
 if ($_SESSION['user'] == "") {
     header("location:index.php");
     exit();
 }
-if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
+if ($_SESSION['level'] != 'vendor' ) {
     header("location:AdminDashboard.php");
     exit();
 }
+
+$id = $_GET['id'];
+
+$sql = "UPDATE `laporan` SET `status` = 'Confirm' WHERE `laporan`.`id` = $id";
+$result = mysqli_query($koneksi, $sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Order</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* Styles are the same as before */
         :root {
             --primary-color: #4a98f7;
             --primary-dark: #3a7dd4;
@@ -70,7 +79,9 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
             font-size: 14px;
         }
 
-        form input[type="text"] {
+        form input[type="text"],
+        form input[type="number"],
+        select, input[type="date"] {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
@@ -81,7 +92,10 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
             transition: border-color 0.3s;
         }
 
-        form input[type="text"]:focus {
+        form input[type="text"]:focus,
+        form input[type="number"]:focus,
+        form input[type="date"]:focus,
+        select:focus {
             border-color: var(--primary-color);
             background-color: #ffffff;
             outline: none;
@@ -120,23 +134,47 @@ if ($_SESSION['level'] != 'admin' && $_SESSION['level'] != 'owner') {
             text-decoration: none;
         }
     </style>
-    <title>Tambah Pelanggan | Barshop</title>
 </head>
 <body>
-    <form action="addRegis.php" method="POST">
-        <h2>Tambah Pelanggan</h2>
-        
-        <label for="Nama">Nama Lengkap:</label>
-        <input type="text" id="Nama" name="Nama" required>
+       
+    <form action="addBeli.php" method="post">
+        <h2>Tambah Barang | Barshop</h2>        
 
-        <label for="Alamat">Alamat:</label>
-        <input type="text" id="Alamat" name="Alamat" required>
+        <label for="TangalPO">Tangal PO:</label>
+        <input type="date" id="TangalPO" name="TangalPO" required>
 
-        <label for="Telpon">No Telpon:</label>
-        <input type="text" id="Telpon" name="Telpon" required>
+        <label for="KodePemasok">Kode Pemasok:</label>
+        <select id="KodePemasok" name="KodePemasok" required>
+            <option value="">Pilih Kode Pemasok</option>
+            <?php
+            include 'koneksi.php';
+            $Query = "SELECT KodePemasok, NamaPemasok FROM pemasok";
+            $Result = mysqli_query($koneksi, $Query);
+            while ($pemasok = mysqli_fetch_assoc($Result)) {
+                echo "<option value='" . $pemasok['KodePemasok'] . "'>" . $pemasok['NamaPemasok'] . "</option>";
+            }
+            ?>
+        </select>
 
-        <a class="btn-back" href="index.php" ">Kembali</a>
-        <input type="submit" value="Tambah">
+        <label for="KodeBarang">Kode Barang:</label>
+        <select id="KodeBarang" name="KodeBarang" required>
+            <option value="">Pilih Kode Barang</option>
+            <?php
+            include 'koneksi.php';
+            $barangQuery = "SELECT KodeBarang, NamaBarang FROM barang";
+            $barangResult = mysqli_query($koneksi, $barangQuery);
+            while ($barang = mysqli_fetch_assoc($barangResult)) {
+                echo "<option value='" . $barang['KodeBarang'] . "'>" . $barang['NamaBarang'] . "</option>";
+            }
+            ?>
+        </select>
+
+
+        <label for="jumlah">Jumlah:</label>
+        <input type="number" id="jumlah" name="jumlah" min="1" required>
+
+        <a class="btn-back" href="AdminDashboard.php" ">Kembali</a>
+        <input type="submit" value="Beli">
     </form>
 </body>
 </html>
